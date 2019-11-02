@@ -15,6 +15,8 @@ def readData(filepath, isTrain=True):
     buffer = file.read(image_size * image_size * num_images)
     data = np.frombuffer(buffer, dtype=np.uint8).astype(np.float32)
     data = data.reshape(num_images, image_size * image_size)
+    data[data < 100] = 0
+    data[data >= 100] = 1
     
     # print(data.shape)
     # image = data[0].reshape(image_size, image_size)
